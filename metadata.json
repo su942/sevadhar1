@@ -1,0 +1,8 @@
+{
+  "name": "Copy of Sevadhar",
+  "description": "Sevadhar - Hyperlocal Home Services Platform",
+  "requestFramePermissions": [
+    "microphone",
+    "geolocation"
+  ]
+}
