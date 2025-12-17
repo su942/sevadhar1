@@ -1,15 +1,16 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { Service } from '../../types';
 
-// Initialize Gemini
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+// Use a getter to ensure we always get the latest API key injected by the shim if needed
+const getAI = () => new GoogleGenAI({ apiKey: process.env.API_KEY || "" });
 
 export const getSmartRecommendations = async (userQuery: string, availableServices: Service[]) => {
   try {
+    const ai = getAI();
     const serviceList = availableServices.map(s => `ID: ${s.id}, Title: ${s.title}, Category: ${s.categoryId}, Desc: ${s.description}`).join('\n');
 
     const response = await ai.models.generateContent({
-      model: "gemini-2.5-flash",
+      model: "gemini-3-flash-preview",
       contents: `You are an intelligent home service assistant. A user has a request: "${userQuery}".
       
       Here is the list of available services:
@@ -43,8 +44,9 @@ export const getSmartRecommendations = async (userQuery: string, availableServic
 
 export const generateSmartReviewSummary = async (serviceTitle: string) => {
   try {
+     const ai = getAI();
      const response = await ai.models.generateContent({
-      model: "gemini-2.5-flash",
+      model: "gemini-3-flash-preview",
       contents: `Generate a brief, 2-sentence summary of what customers typically love about a "${serviceTitle}" service. Make it sound like an aggregated review summary (e.g., "Customers love...").`,
     });
     return response.text;

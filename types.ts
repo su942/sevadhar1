@@ -32,17 +32,17 @@ export interface Provider {
   name: string;
   photo: string;
   rating: number;
-  experience: string; // e.g. "5 Years"
-  isVerified: boolean; // Aadhaar/Police verified
-  badges: string[]; // "Trusted", "Vaccinated"
-  audioIntroUrl?: string; // Mock URL for voice intro
+  experience: string;
+  isVerified: boolean;
+  badges: string[];
+  audioIntroUrl?: string;
   availability: 'available' | 'busy' | 'offline';
   skills: string[];
   phoneNumber: string;
-  walletBalance?: number; // For provider view
+  walletBalance?: number;
   ward?: string;
   notifications?: ProviderNotification[];
-  category?: CategoryId; // Primary category for auth logic
+  category?: CategoryId;
   reviews?: Review[];
 }
 
@@ -64,7 +64,7 @@ export interface Service {
   title: string;
   titleMarathi?: string;
   description: string;
-  priceRange: string; // e.g. "₹200 - ₹500"
+  priceRange: string;
   price: number;
   rating: number;
   duration: string;
@@ -74,7 +74,7 @@ export interface Service {
 }
 
 export interface CartItem {
-  id: string; // Composite ID: serviceId + variantId + providerId
+  id: string;
   serviceId: string;
   title: string;
   price: number;
@@ -109,7 +109,7 @@ export type JobStatus = 'pending' | 'confirmed' | 'accepted' | 'started' | 'comp
 export interface Booking {
   id: string;
   serviceId: string;
-  serviceTitle?: string;
+  serviceTitle: string; 
   providerId?: string;
   date: string;
   time: string;
@@ -117,9 +117,9 @@ export interface Booking {
   lat?: number;
   lng?: number;
   status: JobStatus;
-  amount?: number;
-  otpStart?: string; // OTP to start job
-  otpEnd?: string; // OTP to end job
+  amount: number;
+  otpStart?: string; 
+  otpEnd?: string;
   paymentMethod?: 'upi' | 'card' | 'cash';
   paymentStatus?: 'paid' | 'pending';
 }

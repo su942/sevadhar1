@@ -18,18 +18,27 @@
           scrollbar-width: none;  /* Firefox */
       }
     </style>
-  <script type="importmap">
-{
-  "imports": {
-    "lucide-react": "https://esm.sh/lucide-react@^0.561.0",
-    "@google/genai": "https://esm.sh/@google/genai@^1.33.0",
-    "react/": "https://esm.sh/react@^19.2.3/",
-    "react": "https://esm.sh/react@^19.2.3",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
-  }
-}
-</script>
-</head>
+    <script>
+      // Shim process.env for browser environment to prevent Gemini SDK from crashing
+      window.process = {
+        env: {
+          API_KEY: "" // Will be injected by the environment
+        }
+      };
+    </script>
+    <script type="importmap">
+    {
+      "imports": {
+        "lucide-react": "https://esm.sh/lucide-react@^0.561.0",
+        "@google/genai": "https://esm.sh/@google/genai@^1.33.0",
+        "react/": "https://esm.sh/react@^19.2.3/",
+        "react": "https://esm.sh/react@^19.2.3",
+        "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+        "react-dom": "https://esm.sh/react-dom@^19.2.3"
+      }
+    }
+    </script>
+  </head>
   <body class="bg-white text-gray-900">
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
